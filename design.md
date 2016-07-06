@@ -10,40 +10,54 @@ This game will focus on simplicity with possible sequels or future iterations be
 Classes
 -------
 
-###Off-duty cop
+Start with different amounts of money
+
+###Off-duty Cop
 
 Starts with a stun baton and a pistol or an assault rifle
+
 Close or medium range with the ability to disable wetware
+
 Balanced armor and movement
 
 ###Assassin
 
 Starts with a knife and a pistol
+
 Close range
+
 Light armor and quick movement
 
 ###Hacker
 
 Starts with a deck and a SMG
+
 Medium range with the ability to disable cyborgs, sentries, robots, etc
+
 Light armor and quick movement
 
 ###Cyborg
 
 Starts with their augmentations
+
 Depends on augmentations
+
 Depends on augmentations i.e. heavier armor or improved legs
 
 ###Street Samurai
 
 Starts with a katana and a sniper rifle
+
 Balanced close and long range
+
 Balanced armor and movement
 
 ###Punk
 
 Starts with a bat and rollerblades
+
 Melee only
+
 Balanced armor and movement
 
 Gameplay
@@ -57,6 +71,30 @@ Skills/Attributes
 
 Undecided on sticking with just attributes or implementing skills.
 
+###Dexterity
+
+Accuracy
+
+###Strength
+
+Damage
+
+###Constitution
+
+Health and Resistance
+
+###Intelligence
+
+Faster Level up
+
+###Wisdom
+
+Hacking
+
+###Charisma
+
+Diplomacy
+
 Technical(Mostly applies to the from scratch build)
 ---------------------------------------------------
 
@@ -68,22 +106,33 @@ Enemies
 ###Regular
 
 Security guards
+
 Dogs
+
 The homeless
+
 Cyborgs
+
 Hackers
+
 Gangs
+
 Mutants
 
 ###Minibosses
 
 Rival runners
+
 Hackers
+
 Cyborgs
 
 ###Bosses
 
 Gang leaders
+
 Mercenaries
+
 Assassins
+
 Special forces

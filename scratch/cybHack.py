@@ -1,25 +1,36 @@
 ﻿import sys
 import numpy as np
-
-enemyDict = {}
+import enemies, mapGen
 
 def skillParse():
     return False
 
-class entity():
+class object(): 
+    def __init__(self, x, y, char):
+        self.x = x
+        self.y = y
+        self.char = char
+
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+ 
+    def die(self):
+        #kill object
+    
+class entity(object):
     #id = ''
     hp = ''
-    mp = ''
+    #stamina = ''
     dex = '' #dexterity
     str = '' #strength
     con = '' #constitution
     int = '' #intelligence
     wis = '' #wisdom
     char = '' #charisma
-    def __init__(self, hp, mp, dex, str, con, int, wis, char):
+    def __init__(self, hp, dex, str, con, int, wis, char): #id
         #self.id = id
         self.hp = hp
-        self.mp = mp
         self.dex = dex
         self.str = str
         self.con = con
@@ -41,46 +52,75 @@ class entity():
         self.skill = new
 
 class player(entity):
-    inventory = {}
-        
-        
-class map():
-    map = np.empty([80, 80])
-    #def __init__():
-    #
-    def move():
+    inventory = {} 
+    money = ''
+    classR = ""
+    level = 1
+    xp = ""
+    global playerX, playerY
     
-    def create():
-                
-    def drawHud():
-    
-    def display():
-         
+    def createChar(self):
+        print("Type a number to choose your runner:")
+        print("""
+        1:Off-duty Cop
+
+        2:Assassin
+
+        3:Hacker
+
+        4:Cyborg
+
+        5:Street Samurai
+
+        6:Punk
+
+        """)
+        userChoice = input()
+        if userChoice == "1":
+            self.classR = "Off-duty Cop"
+            
+        elif userChoice == "2":
+            self.classR = "Assassin"
+            
+        elif userChoice == "3":
+            self.classR = "Hacker"
+            
+        elif userChoice == "4":
+            self.classR = "Cyborg"
+            
+        elif userChoice == "5":
+            self.classR = "Street Samurai"
+            
+        elif userChoice == "6":
+            self.classR = "Punk"
+            
 
 def movement():
-    userMv = sys.stdin.read(1) #detect if greater than 1 char
-    if userMv == '\x1b[A' or 'w':
-        print("up")
-    elif userMv == '\x1b[B' or 's':
-        print("down")
-    elif userMv == '\x1b[C' or 'd':
-        print("right")
-    elif userMv == '\x1b[D' or 'a':
-        print("left")
-    else:
+    try:
+        userMv = sys.stdin.read(1) #detect if greater than 1 char and pass to input parser
+    except Exception: #specify?
         inputParser()
+    else: 
+        if userMv == '\x1b[A' or 'w': #fix arrow keys?
+            playerY += 1
+        elif userMv == '\x1b[B' or 's':
+            playerY -= 1
+        elif userMv == '\x1b[C' or 'd':
+            playerX += 1
+        elif userMv == '\x1b[D' or 'a':
+            playerX -= 1
         
 def inputParser():
     userInput = input()
     if userInput == "help":
         print()
-    if userInput == "stats":
+    elif userInput == "stats":
         print(player.showStats())
-    if userInput == "look":
+    elif userInput == "look":
         print()
-    if userInput == "cast":
+    elif userInput == "cast":
         print()
-    if userInput == "inv" or "inventory":
+    elif userInput == "inv" or "inventory":
         print()
     #if userInput == "options": aliases?
     #   
