@@ -1,7 +1,6 @@
 ﻿import sys
 import numpy as np
 
-skillDict = {}
 enemyDict = {}
 
 def skillParse():
@@ -56,8 +55,7 @@ class map():
     def drawHud():
     
     def display():
-        
-    
+         
 
 def movement():
     userMv = sys.stdin.read(1) #detect if greater than 1 char
