@@ -3,9 +3,75 @@ import libtcodpy as libtcod
 SCREEN_WIDTH = 80
 SCREEN_HEIGHT = 80
 
+MAP_WIDTH = 80
+MAP_HEIGHT = 80
+
 playerX = SCREEN_WIDTH/2
 playerY = SCREEN_HEIGHT/2
 
+darkWall = libtcod.Color(0, 0, 100)
+darkGround = libtcod.Color(50, 50, 150)
+ 
+ 
+class Tile:
+    def __init__(self, blocked, block_sight = None):
+        self.blocked = blocked
+
+        if block_sight is None: block_sight = blocked
+        self.block_sight = block_sight
+
+class Object:
+    #generic object
+    def __init__(self, x, y, char, color):
+        self.x = x
+        self.y = y
+        self.char = char
+        self.color = color
+ 
+    def move(self, dx, dy):
+        self.x += dx
+        self.y += dy
+ 
+    def draw(self):
+        libtcod.console_set_default_foreground(con, self.color)
+        libtcod.console_put_char(con, self.x, self.y, self.char, libtcod.BKGND_NONE)
+ 
+    def clear(self):
+        libtcod.console_put_char(con, self.x, self.y, ' ', libtcod.BKGND_NONE)
+
+def makeMap():
+    global map
+ 
+    #fill map
+    map = [[ Tile(False)
+        for y in range(MAP_HEIGHT) ]
+            for x in range(MAP_WIDTH) ]
+ 
+    #test pillars
+    map[30][22].blocked = True
+    map[30][22].block_sight = True
+    map[50][22].blocked = True
+    map[50][22].block_sight = True
+ 
+ 
+def renderAll():
+    global darkWall
+    global darkGround
+ 
+    #set background
+    for y in range(MAP_HEIGHT):
+        for x in range(MAP_WIDTH):
+            wall = map[x][y].block_sight
+            if wall:
+                libtcod.console_set_char_background(con, x, y, darkWall, libtcod.BKGND_SET )
+            else:
+                libtcod.console_set_char_background(con, x, y, darkGround, libtcod.BKGND_SET )
+
+    for object in objects:
+        object.draw()
+
+    libtcod.console_blit(con, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0)        
+        
 def handleKeys():
     global playerX, playerY
  
@@ -20,29 +86,35 @@ def handleKeys():
  
     #movement keys
     if libtcod.console_is_key_pressed(libtcod.KEY_UP):
-        playerY -= 1
+        player.move(0, -1)
  
     elif libtcod.console_is_key_pressed(libtcod.KEY_DOWN):
-        playerY += 1
+        player.move(0, 1)
  
     elif libtcod.console_is_key_pressed(libtcod.KEY_LEFT):
-        playerX -= 1
+        player.move(-1, 0)
  
     elif libtcod.console_is_key_pressed(libtcod.KEY_RIGHT):
-        playerX += 1
+        player.move(1, 0)
 
 libtcod.console_set_custom_font('lucida10x10_gs_tc.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
 libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'cybHack', False)
+con = libtcod.console_new(SCREEN_WIDTH, SCREEN_HEIGHT)
+
+player = Object(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, '@', libtcod.white)
+npc = Object(SCREEN_WIDTH/2 - 5, SCREEN_HEIGHT/2, '@', libtcod.yellow)
+objects = [npc, player]
+makeMap()
 
 while not libtcod.console_is_window_closed():
+    
+    render_all()
  
-    libtcod.console_set_default_foreground(0, libtcod.white)
-    libtcod.console_put_char(0, playerX, playerY, '@', libtcod.BKGND_NONE)
     libtcod.console_flush()
     
-    libtcod.console_put_char(0, playerX, playerY, ' ', libtcod.BKGND_NONE)
+    for object in objects:
+        object.clear()
  
-    #handle keys and exit game if needed
     exit = handleKeys()
     if exit:
         break

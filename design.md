@@ -63,8 +63,20 @@ Balanced armor and movement
 Gameplay
 --------
 
-Each mission is a stand-alone game. Saving will be implemented at some point. This is a true roguelike and thus is turn-based. Missions will consist of data delivery through skyscrapers,
+Each mission is a stand-alone game. Saving will be implemented at some point. This is a true roguelike and thus is turn-based. Missions will consist of data retrieval through skyscrapers,
 sewers, construction sites, office buildings, etc.
+
+###Mission Types
+
+Player chooses from one of two mission types.
+
+####Steal Data
+
+
+
+####Recover Data
+
+
 
 Skills/Attributes
 ------------------
@@ -85,7 +97,7 @@ Health and Resistance
 
 ###Intelligence
 
-Faster Level up
+Faster Level up and Enemy Identification
 
 ###Wisdom
 
@@ -102,6 +114,8 @@ Technical(Mostly applies to the from scratch build)
 
 Enemies
 -------
+
+All enemies are represented by the same ASCII character. Players must then use the look command to identify enemies and their weapons and/or weaknesses.
 
 ###Regular
 

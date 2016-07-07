@@ -15,8 +15,8 @@ class object():
         self.x += dx
         self.y += dy
  
-    def die(self):
-        #kill object
+    def die(self, dx, dy):
+        #set coordinates to background tile
     
 class entity(object):
     #id = ''
@@ -139,6 +139,7 @@ def gameLoop():
     puppet government. Runners and hackers ply their trade in the shadows, always at an uneasy impasse with the powers that be. What will you fight for?
     """)
     #character creation
+    #choose mission type
     print("To move use WASD, for a command type and then press enter. Try 'help' and then hitting enter.")
     while True:
         movement()

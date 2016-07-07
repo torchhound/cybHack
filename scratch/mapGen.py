@@ -1,8 +1,25 @@
 import numpy as np
 
+def sewer():
+
+
+def construction():
+
+
+def skyscraper():
+
+
+def office():
+
+
+def rooftops():
+
+
 class map():
     map = np.empty([80, 80])
     def create(): #dungeon creation
+        #check mission type
+        #rng stitch environments together based on mission type
     
     def dialog(text):
         print(text)
