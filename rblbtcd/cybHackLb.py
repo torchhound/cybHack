@@ -6,9 +6,6 @@ SCREEN_HEIGHT = 80
 MAP_WIDTH = 80
 MAP_HEIGHT = 80
 
-playerX = SCREEN_WIDTH/2
-playerY = SCREEN_HEIGHT/2
-
 darkWall = libtcod.Color(0, 0, 100)
 darkGround = libtcod.Color(50, 50, 150)
  
@@ -29,8 +26,9 @@ class Object:
         self.color = color
  
     def move(self, dx, dy):
-        self.x += dx
-        self.y += dy
+        if not map[self.x + dx][self.y + dy].blocked:
+            self.x += dx
+            self.y += dy
  
     def draw(self):
         libtcod.console_set_default_foreground(con, self.color)
@@ -73,8 +71,6 @@ def renderAll():
     libtcod.console_blit(con, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0)        
         
 def handleKeys():
-    global playerX, playerY
- 
     key = libtcod.console_wait_for_keypress(True)
  
     if key.vk == libtcod.KEY_ENTER and key.lalt:
@@ -108,7 +104,7 @@ makeMap()
 
 while not libtcod.console_is_window_closed():
     
-    render_all()
+    renderAll()
  
     libtcod.console_flush()
     

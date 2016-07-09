@@ -1,4 +1,11 @@
 import numpy as np
+import random
+
+def room():
+    random.seed()
+    rW = random.randrange(2, 15)
+    rH = random.randrange(2, 15)
+    return rW, rH
 
 def sewer():
 
